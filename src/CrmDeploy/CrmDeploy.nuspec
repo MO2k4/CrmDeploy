@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>CrmDeploy</id>
+    <version>0.0.1</version>
+    <title>CrmDeploy</title>
+    <description>Deploy plugins / workflows etc to Dynamics CRM programmatically using a fluent API. This is useful for when a manual process, such as using the Plugin Registration Tool, just wont cut it!</description>
+    <authors>Martin Oehlert, Darrell Tunnell</authors>
+    <owners>Darrell Tunnell</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <language>en-gb</language>
+    <projectUrl>https://github.com/MO2k4/CrmDeploy</projectUrl>
+    <copyright>Copyright Darrell Tunnell 2014</copyright>
+    <releaseNotes>
+      Version 0.0.1 Added Support for filtering Attributes
+      Version 0.0.0 Initial release.
+    </releaseNotes>
+    <tags>Dynamics Crm Deploy Deployment Plugin PluginRegistration PluginRegistrationTool Workflow WorkflowRegistration</tags>
+  </metadata>
+</package>

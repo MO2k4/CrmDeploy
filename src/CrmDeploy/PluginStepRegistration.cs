@@ -1,4 +1,5 @@
-﻿using CrmDeploy.Entities;
+﻿using CrmDeploy.Configuration;
+using CrmDeploy.Entities;
 using CrmDeploy.Enums;
 using Microsoft.Xrm.Sdk;
 
@@ -21,25 +22,20 @@ namespace CrmDeploy
 
         public PluginStepRegistration(PluginTypeRegistration pluginTypeRegistration, SdkMessageNames sdkMessageName, string primaryEntityName, string secondaryEntityName = "")
             : this(pluginTypeRegistration, sdkMessageName.ToString(), primaryEntityName, secondaryEntityName)
+        { }
+
+        public PluginStepRegistration(PluginTypeRegistration pluginTypeRegistration, StepConfiguration configuration)
+            : this(pluginTypeRegistration, configuration.SdkMessageNames.ToString(), configuration.PrimaryEntityName, configuration.SecondaryEntityName)
         {
+            SdkMessageProcessingStep.FilteringAttributes = configuration.FilteringAttributes;
         }
 
-        void PluginType_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void PluginType_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             var pluginType = PluginTypeRegistration.PluginType;
-            // PluginTypeRegistration.PluginType.PluginTypeId
+            
             if (e.PropertyName == "PluginTypeId")
-            {
-                if (pluginType.PluginTypeId == null)
-                {
-                    SdkMessageProcessingStep.EventHandler = null;
-                }
-                else
-                {
-                    SdkMessageProcessingStep.EventHandler = new EntityReference(pluginType.LogicalName, pluginType.PluginTypeId.Value);
-                }
-            }
-            //throw new System.NotImplementedException();
+                SdkMessageProcessingStep.EventHandler = pluginType.PluginTypeId == null ? null : new EntityReference(pluginType.LogicalName, pluginType.PluginTypeId.Value);
         }
 
         public PluginTypeRegistration PluginTypeRegistration { get; set; }

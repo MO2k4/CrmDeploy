@@ -10,21 +10,8 @@ namespace CrmSync.Tests.SystemTests
     [TestFixture]
     public class RegisterPluginSystemTests
     {
-
         public RegistrationInfo RegistrationInfo = null;
-
-        public RegisterPluginSystemTests()
-        {
-
-        }
-
-
-        [TestFixtureSetUp]
-        public void Setup()
-        {
-
-        }
-
+        
         [Test]
         public void RegisterPlugin()
         {
@@ -60,7 +47,7 @@ namespace CrmSync.Tests.SystemTests
 
         }
 
-        [TestFixtureTearDown]
+        [TearDown]
         public void TearDown()
         {
             try
@@ -75,7 +62,6 @@ namespace CrmSync.Tests.SystemTests
             }
           
         }
-
     }
 }
 

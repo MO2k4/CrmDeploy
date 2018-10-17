@@ -1,4 +1,5 @@
 ﻿using System;
+using CrmDeploy.Configuration;
 using CrmDeploy.Connection;
 using CrmDeploy.Enums;
 using Microsoft.Xrm.Sdk;
@@ -144,6 +145,11 @@ namespace CrmDeploy
         public PluginStepOptionsBuilder AndExecutesOn(string messageName, string primaryEntityName, string secondaryEntityName = "")
         {
             return PluginTypeOptions.WhichExecutesOn(messageName, primaryEntityName, secondaryEntityName);
+        }
+
+        public PluginStepOptionsBuilder AndExecutesOn(StepConfiguration configuration)
+        {
+            return PluginTypeOptions.WhichExecutesOn(configuration);
         }
     }
 }

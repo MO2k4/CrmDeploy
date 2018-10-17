@@ -1,4 +1,5 @@
-﻿using CrmDeploy.Enums;
+﻿using CrmDeploy.Configuration;
+using CrmDeploy.Enums;
 
 namespace CrmDeploy
 {
@@ -24,6 +25,13 @@ namespace CrmDeploy
         public PluginStepOptionsBuilder WhichExecutesOn(SdkMessageNames sdkMessageName, string primaryEntityLogicalName, string secondaryEntityLogicalName = "")
         {
             var pluginStepRegistration = new PluginStepRegistration(this.PluginTypeRegistration, sdkMessageName, primaryEntityLogicalName, secondaryEntityLogicalName);
+            PluginTypeRegistration.PluginStepRegistrations.Add(pluginStepRegistration);
+            return new PluginStepOptionsBuilder(this, pluginStepRegistration);
+        }
+
+        public PluginStepOptionsBuilder WhichExecutesOn(StepConfiguration configuration)
+        {
+            var pluginStepRegistration = new PluginStepRegistration(PluginTypeRegistration, configuration);
             PluginTypeRegistration.PluginStepRegistrations.Add(pluginStepRegistration);
             return new PluginStepOptionsBuilder(this, pluginStepRegistration);
         }
